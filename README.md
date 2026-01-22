@@ -5,7 +5,7 @@
 FiktiCari adalah aplikasi berbasis web untuk membantu mahasiswa melaporkan dan mencari barang yang hilang di lingkungan Fakultas. Aplikasi ini menggantikan cara manual (grup chat) dengan sistem terpusat yang terintegrasi.
 
 ## Demo Tampilan
-![Halaman Beranda](link_gambar_beranda.png)
+![Halaman Beranda](Screenshot 2026-01-22 190027.png)
 
 ##  Fitur Utama
 * **Lapor Temuan:** User bisa upload foto barang, lokasi, dan deskripsi.
