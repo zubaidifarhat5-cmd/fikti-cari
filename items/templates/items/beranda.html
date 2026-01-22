@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMSUCari - Beranda</title>
+    <link rel="stylesheet" href="{% static 'items/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Tambahan CSS Inline agar gambar rapi */
+        .card-img-container {
+            width: 100%;
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .placeholder-icon {
+            font-size: 3rem;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-search"></i></div>
+                <span>UMSU <span class="highlight">CARI</span></span>
+            </div>
+
+            <div class="nav-right" style="display: flex; align-items: center; gap: 20px;">
+                
+                <ul class="nav-link" style="margin-top: 0; margin-bottom: 0;">
+                    <li><a href="{% url 'beranda' %}" class="active">Daftar Barang</a></li>
+                    <li><a href="{% url 'lapor_barang' %}">Lapor Temuan</a></li>
+                </ul>
+                
+                {% if user.is_authenticated %}
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span style="font-weight: bold; color: #103a94; font-size: 0.9rem;">
+                            <i class="fas fa-user-circle"></i> {{ user.username }}
+                        </span>
+                        <a href="{% url 'logout' %}">
+                            <button class="btn-login" style="background: #ef4444; margin-left: 0; padding: 8px 20px;">Logout</button>
+                        </a>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}"><button class="btn-login" style="margin-left: 0;">Login/Register</button></a>
+                {% endif %}
+
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>TEMUKAN KEMBALI MILIKMU. <br>BANTU SESAMA</h1>
+            <div class="hero-btns">
+                <a href="#daftar-barang"><button class="btn-report lost">DAFTAR BARANG</button></a>
+                <a href="{% url 'lapor_barang' %}"><button class="btn-report found">LAPOR TEMUAN</button></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="search-container" id="daftar-barang">
+        <form action="" method="GET" class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" name="q" placeholder="Cari barang (misal: Kunci, Helm)..." value="{{ query|default:'' }}">
+            <button type="submit" style="background:none; border:none; cursor:pointer; color: white; font-weight: bold; margin-left:10px;">CARI</button>
+            
+            {% if query %}
+            <a href="{% url 'beranda' %}" style="color: white; margin-left: 15px; text-decoration: none; font-weight: bold;">X</a>
+            {% endif %}
+        </form>
+    </section>
+    
+    <main class="content">
+        <h2 class="section-title">Barang Dilapor</h2>
+
+        <div class="grid">
+            {% for barang in data_barang %}
+            <div class="card">
+                
+                <div class="card-img-container">
+                    {% if barang.foto %}
+                        <img src="{{ barang.foto.url }}" alt="{{ barang.nama_barang }}">
+                    {% else %}
+                        <div style="text-align: center; color: #999;">
+                            <i class="fas fa-camera placeholder-icon"></i>
+                            <p style="font-size: 0.8rem; margin-top: 5px;">Tanpa Foto</p>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="card-body">
+                    <span class="category">{{ barang.get_jenis_display }}</span>
+                    <h3 class="item-name">{{ barang.nama_barang }}</h3>
+                    <p class="location"><strong>Lokasi:</strong> {{ barang.lokasi }}</p>
+                    <p class="contact"><strong>Kontak:</strong> <a href="https://wa.me/{{ barang.kontak_wa }}" style="color:inherit;">{{ barang.kontak_wa }}</a></p>
+                    <p class="description">{{ barang.deskripsi|truncatewords:15 }}</p>
+                    
+                    <div class="card-footer">
+                        <span><i class="far fa-clock"></i> {{ barang.tanggal_posting|timesince }} lalu</span>
+                        
+                        {% if barang.jenis == 'KEHILANGAN' %}
+                            <span class="status lost">HILANG</span>
+                        {% else %}
+                            <span class="status found">DITEMUKAN</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div style="grid-column: 1/-1; text-align: center; color: white; padding: 50px;">
+                <h3>Belum ada data barang.</h3>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+    
+    <script src="{% static 'items/js/script.js' %}"></script>
+</body>
+</html>

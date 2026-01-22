@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FiktiCari</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-search"></i></div>
+                <span>FIKTI <span class="highlight">CARI</span></span>
+            </div>
+
+            <div class="nav-right">
+            <ul class="nav-link">
+                <li><a href="#" class="active">Daftar Barang</a></li>
+                <li><a href="file:///C:/Users/User/OneDrive/Documents/UAS%20Project%205/lapor.html">Lapor Temuan</a></li>
+            </ul>
+            <a href="login.html"><button class="btn-login">Login/Register</button></a>
+        </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>TEMUKAN KEMBALI MILIKMU. <br>BANTU SESAMA</h1>
+            <div class="hero-btns">
+                <a href="#daftar-barang"><button class="btn-report lost">DAFTAR BARANG</button></a>
+                <a href="lapor.html"><button class="btn-report found">LAPOR TEMUAN</button></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="search-container" id="daftar-barang">
+        <div class="search-box">
+            <i class="fas fa-seacrh"></i>
+            <input type="text" placeholder="Cari berdasarkan nama tempat hilang...">
+            <button>Cari</button>
+        </div>
+    </section>
+    
+    <main class="content">
+        <h2 class="section-title">Barang Dilapor</h2>
+
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1581605405669-fcdf81165afa?w=400" alt="Barang">
+                <div class="card-body">
+                    <span class="category">Tas & Dompet</span>
+                    <h3 class="item-name">Tas Ransel Hitam</h3>
+                    <p class="location"><strong>Lokasi:</strong> Ruangan 701 Lt.7</p>
+                    <p class="contact"><strong>Kontak:</strong> 081348617001</p>
+                    <P class="description">Tas Merk Eiger, ada gantungan kunci boneka di resleting depan.</P>
+                    <div class="card-footer">
+                        <span><i class="far fa-clock"></i>2 jam lalu</span>
+                        <span class="status lost">HILANG</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://arista-group.co.id/wp-content/uploads/2023/11/stnk.jpg" alt="Barang">
+                <div class="card-body">
+                    <span class="category">Surat Surat</span>
+                    <h3 class="item-name">STNK</h3>
+                    <p class="location"><strong>Lokasi:</strong> Gedung Fikti</p>
+                    <p class="contact"><strong>Kontak:</strong> 081348617001</p>
+                    <P class="description">STNK yang bernama Harun Azmi Jenis Motor Yamaha Xsr.</P>
+                    <div class="card-footer">
+                        <span><i class="far fa-clock"></i>5 jam lalu</span>
+                        <span class="status lost">HILANG</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://down-id.img.susercontent.com/file/id-11134207-7r98x-lp856bgr6fzuf5" alt="Barang">
+                <div class="card-body">
+                    <span class="category">Alat Tulis</span>
+                    <h3 class="item-name">Buku Catatan</h3>
+                    <p class="location"><strong>Lokasi:</strong> Ruangan 701 Lt.7</p>
+                    <p class="contact"><strong>Kontak:</strong> 081348617001</p>
+                    <P class="description">Buku Catatan Yang Bermerek Pocket Warna Hitam.</P>
+                    <div class="card-footer">
+                        <span><i class="far fa-clock"></i>5 jam lalu</span>
+                        <span class="status lost">HILANG</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://down-id.img.susercontent.com/file/id-11134207-7qul0-lgxaqa5z55ri21" alt="Barang">
+                <div class="card-body">
+                    <span class="category">Aksesoris</span>
+                    <h3 class="item-name">Kunci Beat</h3>
+                    <p class="location"><strong>Lokasi:</strong> Parkiran</p>
+                    <p class="contact"><strong>Kontak:</strong> 081348617001</p>
+                    <P class="description">Kunci Beat Tergelantung Di Motor Beat Parkiran Belakang Umsu</P>
+                    <div class="card-footer">
+                        <span><i class="far fa-clock"></i>5 jam lalu</span>
+                        <span class="status found">DITEMUKAN</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://xgamingsystems.com/wp-content/uploads/2022/08/XD3BL.png" alt="Barang">
+                <div class="card-body">
+                    <span class="category">Elektronik</span>
+                    <h3 class="item-name">Mouse Fantech</h3>
+                    <p class="location"><strong>Lokasi:</strong> Lab 603 Lt.6</p>
+                    <p class="contact"><strong>Kontak:</strong> 081348617001</p>
+                    <P class="description"> Mouse Fantech Ditemukan DiLab 603 Komputer 7</P>
+                    <div class="card-footer">
+                        <span><i class="far fa-clock"></i>5 jam lalu</span>
+                        <span class="status found">DITEMUKAN</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://cf.shopee.ph/file/f8f63e74f76a150920e4a2a4aebd80c1" alt="Barang">
+                <div class="card-body">
+                    <span class="category">Elektronik</span>
+                    <h3 class="item-name">Charger Laptop Asus</h3>
+                    <p class="location"><strong>Lokasi:</strong> Lab 601 Lt.6</p>
+                    <p class="contact"><strong>Kontak:</strong> 081348617001</p>
+                    <p class="description">kabel agak terkelupas dan ada namanya harun azmi</p>
+                    <div class="card-footer">
+                        <span><i class="far fa-clock"></i>5 jam lalu</span>
+                        <span class="status found">DITEMUKAN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+        <script src="script.js"></script>
+</body>
+</html>

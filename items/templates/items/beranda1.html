@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FiktiCari - Beranda</title>
+    <link rel="stylesheet" href="{% static 'items/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-search"></i></div>
+                <span>FIKTI <span class="highlight">CARI</span></span>
+            </div>
+
+            <div class="nav-right">
+            <ul class="nav-link">
+                <li><a href="{% url 'beranda' %}" class="active">Daftar Barang</a></li>
+                <li><a href="{% url 'lapor_barang' %}">Lapor Temuan</a></li>
+            </ul>
+            <a href="/admin/"><button class="btn-login">Login Admin</button></a>
+        </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>TEMUKAN KEMBALI MILIKMU. <br>BANTU SESAMA</h1>
+            <div class="hero-btns">
+                <a href="#daftar-barang"><button class="btn-report lost">DAFTAR BARANG</button></a>
+                <a href="{% url 'lapor_barang' %}"><button class="btn-report found">LAPOR TEMUAN</button></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="search-container" id="daftar-barang">
+        <form action="" method="GET" class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" name="q" placeholder="Cari barang (misal: Kunci, Helm)..." value="{{ query|default:'' }}">
+            <button type="submit" style="background:none; border:none; cursor:pointer; color: white; font-weight: bold; margin-left:10px;">CARI</button>
+            
+            {% if query %}
+            <a href="{% url 'beranda' %}" style="color: white; margin-left: 15px; text-decoration: none; font-weight: bold;">X</a>
+            {% endif %}
+        </form>
+    </section>
+    
+    <main class="content">
+        <h2 class="section-title">Barang Dilapor</h2>
+
+        <div class="grid">
+            {% for barang in data_barang %}
+            <div class="card">
+                {% if barang.foto %}
+                    <img src="{{ barang.foto.url }}" alt="{{ barang.nama_barang }}">
+                {% else %}
+                    <img src="https://via.placeholder.com/400x200?text=No+Image" alt="No Image">
+                {% endif %}
+
+                <div class="card-body">
+                    <span class="category">{{ barang.get_jenis_display }}</span>
+                    
+                    <h3 class="item-name">{{ barang.nama_barang }}</h3>
+                    
+                    <p class="location"><strong>Lokasi:</strong> {{ barang.lokasi }}</p>
+                    
+                    <p class="contact"><strong>Kontak:</strong> <a href="https://wa.me/{{ barang.kontak_wa }}" style="color:inherit;">{{ barang.kontak_wa }}</a></p>
+                    
+                    <p class="description">{{ barang.deskripsi|truncatewords:15 }}</p>
+                    
+                    <div class="card-footer">
+                        <span><i class="far fa-clock"></i> {{ barang.tanggal_posting|timesince }} lalu</span>
+                        
+                        {% if barang.jenis == 'KEHILANGAN' %}
+                            <span class="status lost">HILANG</span>
+                        {% else %}
+                            <span class="status found">DITEMUKAN</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div style="grid-column: 1/-1; text-align: center; color: white; padding: 50px;">
+                <h3>Belum ada data barang.</h3>
+            </div>
+            {% endfor %}
+            </div>
+    </main>
+    
+    <script src="{% static 'items/js/script.js' %}"></script>
+</body>
+</html>

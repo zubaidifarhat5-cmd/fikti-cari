@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FiktiCari - Lapor</title>
+    <link rel="stylesheet" href="{% static 'items/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-search"></i></div>
+                <span>FIKTI <span class="highlight">CARI</span></span>
+            </div>
+            
+            <div class="nav-right" style="display: flex; align-items: center; gap: 20px;">
+                <ul class="nav-link" style="margin-top: 0; margin-bottom: 0;">
+                    <li><a href="{% url 'beranda' %}">Daftar Barang</a></li>
+                    <li><a href="#" class="active">Lapor Temuan</a></li>
+                </ul>
+                
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span style="font-weight: bold; color: #103a94; font-size: 0.9rem;">
+                        <i class="fas fa-user-circle"></i> {{ user.username }}
+                    </span>
+                    <a href="{% url 'logout' %}">
+                        <button class="btn-login" style="background: #ef4444; margin-left: 0; padding: 8px 20px;">Logout</button>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    
+    <main class="form-section">
+        <div class="form-container">
+            <div class="form-header">
+                <h2><i class="fas fa-hand-holding-heart"></i> Form Lapor Barang</h2>
+                <p>Isi detail barang yang hilang atau ditemukan.</p>
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                {% if form.errors %}
+                <div style="background: #ef4444; color: white; padding: 10px; margin-bottom: 20px; border-radius: 5px;">
+                    <p>Mohon periksa kembali inputan Anda.</p>
+                </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label for="jenis">Jenis Laporan</label>
+                    <select id="jenis" name="jenis" required>
+                        <option value="KEHILANGAN">Saya Kehilangan Barang</option>
+                        <option value="DITEMUKAN">Saya Menemukan Barang</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="nama_barang">Nama Barang</label>
+                    <input type="text" id="nama_barang" name="nama_barang" placeholder="Contoh: Kunci Motor Honda" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lokasi">Lokasi</label>
+                    <input type="text" id="lokasi" name="lokasi" placeholder="Contoh: Meja Kantin Teknik" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="kontak_wa">Kontak Whatsapp</label>
+                    <input type="text" id="kontak_wa" name="kontak_wa" placeholder="Contoh: 0812xxxx" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="deskripsi">Deskripsi</label>
+                    <textarea id="deskripsi" name="deskripsi" rows="4" placeholder="Jelaskan detail fisik barang..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="foto">Unggah Foto Barang (Opsional)</label>
+                    <input type="file" id="foto" name="foto" accept="image/*" class="file-input">
+                </div>
+
+                <button type="submit" class="btn-submit">KIRIM LAPORAN</button>
+                <div style="margin-top: 15px; text-align: center;">
+                     <a href="{% url 'beranda' %}" style="color: #888; text-decoration: none;">Batal</a>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="{% static 'items/js/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FiktiCari</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-register">
+
+    <div class="register-tampilan">
+        <div class="register-box">
+            <div class="register-logo">
+                    <div class="register-icon"><i class="fas fa-search"></i></div>
+                    <h1>FIKTI <span>CARI</span></h1>
+                </div>
+
+                <div class="register-header">
+                    <h2>SELAMAT DATANG</h2>
+                    <P>Silahkan register</P>
+                </div>
+
+                <form action="/register" method="POST">
+                    <div class="form-grup">
+                        <label for="username">NPM / Username</label>
+                        <div class="input-with-ikon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="username" name="username" placeholder="Masukkan NPM Anda" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grup">
+                        <label for="password">Password</label>
+                        <div class="input-with-ikon">
+                            <i class="fas fa-lock"></i>
+                            <input type="text" id="password" name="password" placeholder="Masukkan Password" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grup">
+                        <label for="confirm password">Confirm Password</label>
+                        <div class="input-with-ikon">
+                            <i class="fas fa-lock"></i>
+                            <input type="text" id="confirm password" name="confirm password" placeholder="Masukkan confirm Password" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grup">
+                        <label for="email">Email</label>
+                        <div class="input-with-ikon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" id="email" name="email" placeholder="Masukkan email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grup">
+                        <label for="whatsapp">Nomor Whatsapp</label>
+                        <div class="input-with-ikon">
+                            <i class="fab fa-whatsapp"></i>
+                            <input type="text" id="whatsapp" name="whatsapp" placeholder="Masukkan Nomor whatsapp" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="register-submit">REGISTER</button>
+                </form>
+
+                <div class="register-footer">
+                    <a href="login.html" class="kembali-home"><i class="fas fa-arrow-left"></i>Sudah Punya Akun?</a>
+
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+</body>
+</html>
